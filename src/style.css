@@ -1,0 +1,143 @@
+.wrapper {
+  max-width: 700px;
+  min-width: 600px;
+  margin: 70px auto;
+}
+
+.firstCard {
+  padding: 0 5px;
+}
+
+.firstCard .searchButton {
+  background-color: rgb(26, 124, 174);
+  border-color: rgb(26, 124, 174);
+}
+
+.mainInput {
+  text-indent: 10px;
+}
+
+.stick {
+  font-weight: normal;
+}
+
+.city h1 {
+  font-size: 38px;
+  font-weight: bolder;
+}
+
+.temperature h1 {
+  font-size: 38px;
+  font-weight: bolder;
+  margin: 0px 10px;
+}
+
+.firstGroup {
+  top: 5px;
+}
+
+#fahrenheit {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background-color: white;
+  color: rgb(33, 37, 41);
+  font-weight: bolder;
+}
+
+#fahrenheit:hover {
+  color: rgb(60, 7, 4);
+  cursor: pointer;
+}
+
+#celsius {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background-color: white;
+  color: rgb(33, 37, 41);
+  font-weight: bolder;
+}
+
+#celsius:hover {
+  color: rgb(15, 24, 70);
+  cursor: pointer;
+}
+
+.bonusInfo {
+  font-size: 13px;
+  position: relative;
+  top: 5px;
+}
+
+.todaysInfo {
+  column-gap: 40px;
+}
+
+.today {
+  font-size: 35px;
+  font-family: "Roboto Mono";
+}
+
+.time {
+  font-size: 22px;
+}
+
+.weather {
+  font-size: 20px;
+}
+
+.currentAreaButton {
+  border: 5px double rgb(62, 84, 127);
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgb(151, 186, 215);
+  color: whitesmoke;
+  font-family: "Roboto Mono";
+  font-size: 17px;
+  margin: 0 15px;
+  transition: all 170ms ease-in-out;
+}
+
+.currentAreaButton:hover {
+  background-color: rgb(113, 154, 187);
+  color: azure;
+}
+
+.nextDays {
+  margin: 25px 0 5px 0;
+}
+
+.nextDays .card-header {
+  padding: 0;
+  background-color: cadetblue;
+  color: white;
+  font-family: "Roboto Mono";
+}
+
+.nextDays .lowerInfo {
+  font-size: 10px;
+  padding: 0;
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  background-color: rgb(215, 236, 236);
+  color: rgb(124, 148, 168);
+}
+
+.weekDays {
+  display: inline-flex;
+  position: relative;
+  justify-content: space-around;
+}
+
+.nextDays .emojisCard {
+  padding: 0px;
+}
+
+.weatherEmojis {
+  font-size: 60px;
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+}
