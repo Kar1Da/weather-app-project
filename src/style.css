@@ -1,3 +1,9 @@
+.mainWrapper {
+  max-width: 700px;
+  min-width: 600px;
+  margin: 0 auto;
+}
+
 .wrapper {
   display: block;
   max-width: 700px;
@@ -155,10 +161,4 @@
   display: flex;
   position: relative;
   justify-content: space-around;
-}
-
-.lowerLink {
-  position: relative;
-  display: flex;
-  margin: 0 0 0 210px;
 }
