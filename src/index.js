@@ -52,6 +52,10 @@ todaysTime.innerHTML = `${hours}:${minutes}`;
 
 //for the city choosing
 
+let apiKeyForecast = "6f75o9ff2b2c1797a73f7cb01efdat74";
+let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=New York&key=${apiKeyForecast}&units=metric`;
+axios.get(apiUrlForecast).then(showWeatherImages);
+
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#degrees").innerHTML = `${Math.round(
@@ -105,10 +109,76 @@ function convertToCelsius(event) {
   temperatureElement.innerHTML = 19;
 }
 
-/* let dateElement = document.querySelector("#time");
-let currentTime = new Date();
-dateElement.innerHTML = formatDate(currentTime); */
+/* function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  return `${hours}:${minutes}`;
+}
 
+function time() {
+  let dateElement = document.querySelector(".time");
+  let currentTime = new Date();
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+} */
+
+/* let apiKey = "6f75o9ff2b2c1797a73f7cb01efdat74";
+let city = "Canberra";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+axios.get(apiUrl).then(showWeatherImages); */
+
+function showWeatherImages(response) {
+  let firstImage = document.querySelector(".nextDayImage");
+  firstImage.setAttribute("src", response.data.daily[1].condition.icon_url);
+
+  let nextDescription = document.querySelector(".firstDesk");
+  nextDescription = nextDescription.innerHTML =
+    response.data.daily[1].condition.description;
+
+  let secondImage = document.querySelector(".secondDayImage");
+  secondImage.setAttribute("src", response.data.daily[2].condition.icon_url);
+
+  let secondDescription = document.querySelector(".secondDesk");
+  secondDescription = secondDescription.innerHTML =
+    response.data.daily[2].condition.description;
+
+  let thirdImage = document.querySelector(".thirdDayImage");
+  thirdImage.setAttribute("src", response.data.daily[3].condition.icon_url);
+
+  let thirdDescription = document.querySelector(".thirdDesk");
+  thirdDescription = thirdDescription.innerHTML =
+    response.data.daily[3].condition.description;
+
+  let fourthImage = document.querySelector(".fourthDayImage");
+  fourthImage.setAttribute("src", response.data.daily[4].condition.icon_url);
+
+  let fourthDescription = document.querySelector(".fourthDesk");
+  fourthDescription = fourthDescription.innerHTML =
+    response.data.daily[4].condition.description;
+
+  let fifthImage = document.querySelector(".fifthDayImage");
+  fifthImage.setAttribute("src", response.data.daily[5].condition.icon_url);
+
+  let fifthDescription = document.querySelector(".fifthDesk");
+  fifthDescription = fifthDescription.innerHTML =
+    response.data.daily[5].condition.description;
+
+  console.log(response.data);
+  console.log(response.data.daily[1].condition.icon_url);
+}
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 let searchForm = document.querySelector("#searchCity-form");
 searchForm.addEventListener("submit", handleSubmit);
 
