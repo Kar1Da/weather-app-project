@@ -51,10 +51,9 @@ minutes = minutes <= 9 ? "0" + minutes : minutes;
 todaysTime.innerHTML = `${hours}:${minutes}`;
 
 //for the city choosing
-
-let apiKeyForecast = "6f75o9ff2b2c1797a73f7cb01efdat74";
-let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=New York&key=${apiKeyForecast}&units=metric`;
-axios.get(apiUrlForecast).then(showWeatherImages);
+let cityValue = document.querySelector("#city-input").value;
+let apiKey = "6f75o9ff2b2c1797a73f7cb01efdat74";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityValue}&key=${apiKey}&units=metric`;
 
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
@@ -162,11 +161,24 @@ function showWeatherImages(response) {
   let fifthDescription = document.querySelector(".fifthDesk");
   fifthDescription = fifthDescription.innerHTML =
     response.data.daily[5].condition.description;
-
-  console.log(response.data);
-  console.log(response.data.daily[1].condition.icon_url);
 }
 
+function getWeatherData(cityValue) {
+  let apiKeyForecast = "6f75o9ff2b2c1797a73f7cb01efdat74";
+  let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${cityValue}&key=${apiKeyForecast}&units=metric`;
+  axios.get(apiUrlForecast).then(showWeatherImages);
+}
+
+function forecastValue(event) {
+  event.preventDefault();
+  let cityValue = document.querySelector("#city-input").value;
+  getWeatherData(cityValue);
+}
+
+let forecastActive = document.querySelector("#searchCity-form");
+forecastActive.addEventListener("submit", forecastValue);
+
+getWeatherData("New York");
 //
 //
 //
