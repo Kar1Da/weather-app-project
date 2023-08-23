@@ -53,6 +53,8 @@ todaysTime.innerHTML = `${hours}:${minutes}`;
 //for the main content
 
 function displayWeatherCondition(response) {
+  celsiusTemperature = response.data.temperature.current;
+
   if (response.data.city === undefined) {
     document.querySelector("#city").innerHTML = `Can't find this location`;
     document.querySelector("#degrees").innerHTML = `?`;
@@ -64,7 +66,7 @@ function displayWeatherCondition(response) {
   } else {
     document.querySelector("#city").innerHTML = response.data.city;
     document.querySelector("#degrees").innerHTML = `${Math.round(
-      response.data.temperature.current
+      celsiusTemperature
     )}°`;
 
     document.querySelector(
@@ -98,8 +100,6 @@ function searchLocation(response) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${response.coords.latitude}&lon=${response.coords.longitude}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayWeatherCondition);
-  // console.log(response);
-  //console.log(apiUrl);
 }
 
 function getCurrentLocation(event) {
@@ -107,17 +107,18 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function convertToFahrenheit(event) {
+/* function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 66;
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  console.log(response.data.temperature.current);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = 19;
-}
+} */
 
 /* function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -193,19 +194,30 @@ function forecastValue(event) {
 let forecastActive = document.querySelector("#searchCity-form");
 forecastActive.addEventListener("submit", forecastValue);
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#degrees");
+
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#degrees");
+  temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}°`;
+}
+
+let fahrenheitUnit = document.querySelector("#fahrenheit");
+fahrenheitUnit.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let celsiusTemperature = null;
+
 getWeatherData("Kyiv");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 let searchForm = document.querySelector("#searchCity-form");
 searchForm.addEventListener("submit", handleSubmit);
 

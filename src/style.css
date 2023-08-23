@@ -67,7 +67,7 @@
 }
 
 #fahrenheit:hover {
-  color: rgb(60, 7, 4);
+  color: rgb(117, 17, 12);
   cursor: pointer;
 }
 
@@ -81,7 +81,7 @@
 }
 
 #celsius:hover {
-  color: rgb(15, 24, 70);
+  color: rgb(28, 45, 129);
   cursor: pointer;
 }
 
@@ -157,7 +157,6 @@
 }
 
 .weatherEmojis {
-  font-size: 60px;
   display: flex;
   position: relative;
   justify-content: space-around;
