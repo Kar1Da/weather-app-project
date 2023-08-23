@@ -53,22 +53,32 @@ todaysTime.innerHTML = `${hours}:${minutes}`;
 //for the main content
 
 function displayWeatherCondition(response) {
-  document.querySelector("#city").innerHTML = response.data.city;
-  document.querySelector("#degrees").innerHTML = `${Math.round(
-    response.data.temperature.current
-  )}°`;
+  if (response.data.city === undefined) {
+    document.querySelector("#city").innerHTML = `Can't find this location`;
+    document.querySelector("#degrees").innerHTML = `?`;
+    alert(`If you have this issue, you're probably :
+    1. Misspelled the city name;
+    2. Wrote a non-exicting place;
+    3. Have problems with Wi-Fi connection or server;
+    If you have any questions please contact this email : weather.4cast@gmail.com`);
+  } else {
+    document.querySelector("#city").innerHTML = response.data.city;
+    document.querySelector("#degrees").innerHTML = `${Math.round(
+      response.data.temperature.current
+    )}°`;
 
-  document.querySelector(
-    ".humidity"
-  ).innerHTML = `${response.data.temperature.humidity}%`;
-  document.querySelector(".windSpeed").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector(
-    ".weather"
-  ).innerHTML = `${response.data.condition.description}`;
+    document.querySelector(
+      ".humidity"
+    ).innerHTML = `${response.data.temperature.humidity}%`;
+    document.querySelector(".windSpeed").innerHTML = Math.round(
+      response.data.wind.speed
+    );
+    document.querySelector(
+      ".weather"
+    ).innerHTML = `${response.data.condition.description}`;
+  }
 
-  // console.log(response.data);
+  console.log(response.data);
 }
 
 function searchCity(city) {
@@ -88,8 +98,8 @@ function searchLocation(response) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${response.coords.latitude}&lon=${response.coords.longitude}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayWeatherCondition);
-  console.log(response);
-  console.log(apiUrl);
+  // console.log(response);
+  //console.log(apiUrl);
 }
 
 function getCurrentLocation(event) {
@@ -128,40 +138,44 @@ let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${api
 axios.get(apiUrl).then(showWeatherImages); */
 
 function showWeatherImages(response) {
-  let firstImage = document.querySelector(".nextDayImage");
-  firstImage.setAttribute("src", response.data.daily[1].condition.icon_url);
+  if (response.data.city === undefined) {
+    document.querySelector("#city").innerHTML = `Can't find this location`;
+  } else {
+    let firstImage = document.querySelector(".nextDayImage");
+    firstImage.setAttribute("src", response.data.daily[1].condition.icon_url);
 
-  let nextDescription = document.querySelector(".firstDesk");
-  nextDescription = nextDescription.innerHTML =
-    response.data.daily[1].condition.description;
+    let nextDescription = document.querySelector(".firstDesk");
+    nextDescription = nextDescription.innerHTML =
+      response.data.daily[1].condition.description;
 
-  let secondImage = document.querySelector(".secondDayImage");
-  secondImage.setAttribute("src", response.data.daily[2].condition.icon_url);
+    let secondImage = document.querySelector(".secondDayImage");
+    secondImage.setAttribute("src", response.data.daily[2].condition.icon_url);
 
-  let secondDescription = document.querySelector(".secondDesk");
-  secondDescription = secondDescription.innerHTML =
-    response.data.daily[2].condition.description;
+    let secondDescription = document.querySelector(".secondDesk");
+    secondDescription = secondDescription.innerHTML =
+      response.data.daily[2].condition.description;
 
-  let thirdImage = document.querySelector(".thirdDayImage");
-  thirdImage.setAttribute("src", response.data.daily[3].condition.icon_url);
+    let thirdImage = document.querySelector(".thirdDayImage");
+    thirdImage.setAttribute("src", response.data.daily[3].condition.icon_url);
 
-  let thirdDescription = document.querySelector(".thirdDesk");
-  thirdDescription = thirdDescription.innerHTML =
-    response.data.daily[3].condition.description;
+    let thirdDescription = document.querySelector(".thirdDesk");
+    thirdDescription = thirdDescription.innerHTML =
+      response.data.daily[3].condition.description;
 
-  let fourthImage = document.querySelector(".fourthDayImage");
-  fourthImage.setAttribute("src", response.data.daily[4].condition.icon_url);
+    let fourthImage = document.querySelector(".fourthDayImage");
+    fourthImage.setAttribute("src", response.data.daily[4].condition.icon_url);
 
-  let fourthDescription = document.querySelector(".fourthDesk");
-  fourthDescription = fourthDescription.innerHTML =
-    response.data.daily[4].condition.description;
+    let fourthDescription = document.querySelector(".fourthDesk");
+    fourthDescription = fourthDescription.innerHTML =
+      response.data.daily[4].condition.description;
 
-  let fifthImage = document.querySelector(".fifthDayImage");
-  fifthImage.setAttribute("src", response.data.daily[5].condition.icon_url);
+    let fifthImage = document.querySelector(".fifthDayImage");
+    fifthImage.setAttribute("src", response.data.daily[5].condition.icon_url);
 
-  let fifthDescription = document.querySelector(".fifthDesk");
-  fifthDescription = fifthDescription.innerHTML =
-    response.data.daily[5].condition.description;
+    let fifthDescription = document.querySelector(".fifthDesk");
+    fifthDescription = fifthDescription.innerHTML =
+      response.data.daily[5].condition.description;
+  }
 }
 
 function getWeatherData(cityValue) {
