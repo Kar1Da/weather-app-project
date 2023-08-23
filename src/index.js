@@ -216,7 +216,7 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let celsiusTemperature = null;
 
-getWeatherData("Kyiv");
+getWeatherData("Canberra");
 
 let searchForm = document.querySelector("#searchCity-form");
 searchForm.addEventListener("submit", handleSubmit);
@@ -224,4 +224,4 @@ searchForm.addEventListener("submit", handleSubmit);
 let currentLocationButton = document.querySelector(".currentAreaButton");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
-searchCity("Kyiv");
+searchCity("Canberra");
