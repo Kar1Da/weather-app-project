@@ -80,7 +80,7 @@ function displayWeatherCondition(response) {
     ).innerHTML = `${response.data.condition.description}`;
   }
 
-  console.log(response.data);
+  // console.log(response.data);
 }
 
 function searchCity(city) {
@@ -142,6 +142,7 @@ function showWeatherImages(response) {
   if (response.data.city === undefined) {
     document.querySelector("#city").innerHTML = `Can't find this location`;
   } else {
+    //
     let firstImage = document.querySelector(".nextDayImage");
     firstImage.setAttribute("src", response.data.daily[1].condition.icon_url);
 
@@ -149,6 +150,18 @@ function showWeatherImages(response) {
     nextDescription = nextDescription.innerHTML =
       response.data.daily[1].condition.description;
 
+    let nextTempMax = document.querySelector(".tomorrowTempMax");
+    nextTempMax = nextTempMax.innerHTML = `${Math.round(
+      response.data.daily[1].temperature.maximum
+    )}°/`;
+
+    console.log(Math.round(response.data.daily[1].temperature.maximum));
+
+    let nextTempMin = document.querySelector(".tomorrowTempMin");
+    nextTempMin = nextTempMin.innerHTML = `${Math.round(
+      response.data.daily[1].temperature.minimum
+    )}°`;
+    //
     let secondImage = document.querySelector(".secondDayImage");
     secondImage.setAttribute("src", response.data.daily[2].condition.icon_url);
 
@@ -156,6 +169,16 @@ function showWeatherImages(response) {
     secondDescription = secondDescription.innerHTML =
       response.data.daily[2].condition.description;
 
+    let dayTwoTempMax = document.querySelector(".dayTwoTempMax");
+    dayTwoTempMax = dayTwoTempMax.innerHTML = `${Math.round(
+      response.data.daily[2].temperature.maximum
+    )}°/`;
+
+    let dayTwoTempMin = document.querySelector(".dayTwoTempMin");
+    dayTwoTempMin = dayTwoTempMin.innerHTML = `${Math.round(
+      response.data.daily[2].temperature.minimum
+    )}°`;
+    //
     let thirdImage = document.querySelector(".thirdDayImage");
     thirdImage.setAttribute("src", response.data.daily[3].condition.icon_url);
 
@@ -163,6 +186,17 @@ function showWeatherImages(response) {
     thirdDescription = thirdDescription.innerHTML =
       response.data.daily[3].condition.description;
 
+    let dayThreeTempMax = document.querySelector(".dayThreeTempMax");
+    dayThreeTempMax = dayThreeTempMax.innerHTML = `${Math.round(
+      response.data.daily[3].temperature.maximum
+    )}°/`;
+
+    let dayThreeTempMin = document.querySelector(".dayThreeTempMin");
+    dayThreeTempMin = dayThreeTempMin.innerHTML = `${Math.round(
+      response.data.daily[3].temperature.minimum
+    )}°`;
+
+    //
     let fourthImage = document.querySelector(".fourthDayImage");
     fourthImage.setAttribute("src", response.data.daily[4].condition.icon_url);
 
@@ -170,6 +204,17 @@ function showWeatherImages(response) {
     fourthDescription = fourthDescription.innerHTML =
       response.data.daily[4].condition.description;
 
+    let dayFourTempMax = document.querySelector(".dayFourTempMax");
+    dayFourTempMax = dayFourTempMax.innerHTML = `${Math.round(
+      response.data.daily[4].temperature.maximum
+    )}°/`;
+
+    let dayFourTempMin = document.querySelector(".dayFourTempMin");
+    dayFourTempMin = dayFourTempMin.innerHTML = `${Math.round(
+      response.data.daily[2].temperature.minimum
+    )}°`;
+
+    //
     let fifthImage = document.querySelector(".fifthDayImage");
     fifthImage.setAttribute("src", response.data.daily[5].condition.icon_url);
 
@@ -177,6 +222,19 @@ function showWeatherImages(response) {
     fifthDescription = fifthDescription.innerHTML =
       response.data.daily[5].condition.description;
   }
+
+  let dayFiveTempMax = document.querySelector(".dayFiveTempMax");
+  dayFiveTempMax = dayFiveTempMax.innerHTML = `${Math.round(
+    response.data.daily[5].temperature.maximum
+  )}°/`;
+
+  let dayFiveTempMin = document.querySelector(".dayFiveTempMin");
+  dayFiveTempMin = dayFiveTempMin.innerHTML = `${Math.round(
+    response.data.daily[5].temperature.minimum
+  )}°`;
+
+  //
+  console.log(response);
 }
 
 function getWeatherData(cityValue) {
