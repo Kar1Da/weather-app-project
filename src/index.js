@@ -100,6 +100,7 @@ function searchLocation(response) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${response.coords.latitude}&lon=${response.coords.longitude}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayWeatherCondition);
+  console.log(response);
 }
 
 function getCurrentLocation(event) {
@@ -107,38 +108,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-/* function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-  console.log(response.data.temperature.current);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 19;
-} */
-
-/* function formatDate(timestamp) {
-  let date = new Date(timestamp);
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  return `${hours}:${minutes}`;
-}
-
-function time() {
-  let dateElement = document.querySelector(".time");
-  let currentTime = new Date();
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
-} */
-
-/* let apiKey = "6f75o9ff2b2c1797a73f7cb01efdat74";
-let city = "Canberra";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-axios.get(apiUrl).then(showWeatherImages); */
-
-function showWeatherImages(response) {
+function showWeatherForecast(response) {
   if (response.data.city === undefined) {
     document.querySelector("#city").innerHTML = `Can't find this location`;
   } else {
@@ -154,8 +124,6 @@ function showWeatherImages(response) {
     nextTempMax = nextTempMax.innerHTML = `${Math.round(
       response.data.daily[1].temperature.maximum
     )}°/`;
-
-    console.log(Math.round(response.data.daily[1].temperature.maximum));
 
     let nextTempMin = document.querySelector(".tomorrowTempMin");
     nextTempMin = nextTempMin.innerHTML = `${Math.round(
@@ -240,7 +208,7 @@ function showWeatherImages(response) {
 function getWeatherData(cityValue) {
   let apiKeyForecast = "6f75o9ff2b2c1797a73f7cb01efdat74";
   let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${cityValue}&key=${apiKeyForecast}&units=metric`;
-  axios.get(apiUrlForecast).then(showWeatherImages);
+  axios.get(apiUrlForecast).then(showWeatherForecast);
 }
 
 function forecastValue(event) {
