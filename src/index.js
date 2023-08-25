@@ -108,9 +108,29 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+function displayForecastCurrentArea(response) {
+  let apiKey = "6f75o9ff2b2c1797a73f7cb01efdat74";
+  let lat = response.coords.latitude;
+  let lon = response.coords.longitude;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeatherForecast);
+  //console.log(response);
+}
+
+function getCurrentLocationTwo(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(displayForecastCurrentArea);
+}
+
 function showWeatherForecast(response) {
   if (response.data.city === undefined) {
     document.querySelector("#city").innerHTML = `Can't find this location`;
+    document.querySelector("#degrees").innerHTML = `?`;
+    alert(`If you have this issue, you're probably :
+    1. Misspelled the city name;
+    2. Wrote a non-exicting place;
+    3. Have problems with Wi-Fi connection or server;
+    If you have any questions please contact this email : weather.4cast@gmail.com`);
   } else {
     //
     let firstImage = document.querySelector(".nextDayImage");
@@ -249,5 +269,8 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector(".currentAreaButton");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let currentForecastButton = document.querySelector(".currentAreaButton");
+currentForecastButton.addEventListener("click", getCurrentLocationTwo);
 
 searchCity("Canberra");
