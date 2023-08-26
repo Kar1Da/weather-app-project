@@ -55,6 +55,8 @@ todaysTime.innerHTML = `${hours}:${minutes}`;
 function displayWeatherCondition(response) {
   celsiusTemperature = response.data.temperature.current;
 
+  windSpeed = response.data.wind.speed;
+
   if (response.data.city === undefined) {
     document.querySelector("#city").innerHTML = `Can't find this location`;
     document.querySelector("#degrees").innerHTML = `?`;
@@ -72,9 +74,9 @@ function displayWeatherCondition(response) {
     document.querySelector(
       ".humidity"
     ).innerHTML = `${response.data.temperature.humidity}%`;
-    document.querySelector(".windSpeed").innerHTML = Math.round(
-      response.data.wind.speed
-    );
+    document.querySelector(".windSpeed").innerHTML = `${Math.round(
+      windSpeed
+    )}km/h`;
     document.querySelector(
       ".weather"
     ).innerHTML = `${response.data.condition.description}`;
@@ -100,7 +102,7 @@ function searchLocation(response) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${response.coords.latitude}&lon=${response.coords.longitude}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayWeatherCondition);
-  console.log(response);
+  // console.log(response);
 }
 
 function getCurrentLocation(event) {
@@ -246,12 +248,19 @@ function displayFahrenheitTemperature(event) {
 
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
+
+  let windSpeedInMiles = Math.round(windSpeed / 1.609344);
+  document.querySelector(".windSpeed").innerHTML = `${windSpeedInMiles}mph`;
 }
 
 function displayCelsiusTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#degrees");
   temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}°`;
+  let windSpeedInKilometers = Math.round(windSpeed);
+  document.querySelector(".windSpeed").innerHTML = `${Math.round(
+    windSpeedInKilometers
+  )}km/h`;
 }
 
 let fahrenheitUnit = document.querySelector("#fahrenheit");
@@ -261,6 +270,8 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let celsiusTemperature = null;
+
+let windSpeed = null;
 
 getWeatherData("Canberra");
 
