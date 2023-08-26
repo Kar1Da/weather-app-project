@@ -201,7 +201,7 @@ function showWeatherForecast(response) {
 
     let dayFourTempMin = document.querySelector(".dayFourTempMin");
     dayFourTempMin = dayFourTempMin.innerHTML = `${Math.round(
-      response.data.daily[2].temperature.minimum
+      response.data.daily[4].temperature.minimum
     )}°`;
 
     //
@@ -224,13 +224,16 @@ function showWeatherForecast(response) {
   )}°`;
 
   //
-  console.log(response);
+  //
+  //console.log(response);
 }
 
 function getWeatherData(cityValue) {
   let apiKeyForecast = "6f75o9ff2b2c1797a73f7cb01efdat74";
   let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${cityValue}&key=${apiKeyForecast}&units=metric`;
   axios.get(apiUrlForecast).then(showWeatherForecast);
+  axios.get(apiUrlForecast).then(showWeatherForecastTemperature);
+  console.log(apiUrlForecast);
 }
 
 function forecastValue(event) {
@@ -242,6 +245,50 @@ function forecastValue(event) {
 let forecastActive = document.querySelector("#searchCity-form");
 forecastActive.addEventListener("submit", forecastValue);
 
+//
+//
+//
+
+function showWeatherForecastTemperature(response) {
+  //
+
+  oneMax = response.data.daily[1].temperature.maximum;
+
+  oneMin = response.data.daily[1].temperature.minimum;
+
+  //
+
+  twoMax = response.data.daily[2].temperature.maximum;
+
+  twoMin = response.data.daily[2].temperature.minimum;
+
+  //
+
+  threeMax = response.data.daily[3].temperature.maximum;
+
+  threeMin = response.data.daily[3].temperature.minimum;
+
+  //
+
+  fourMax = response.data.daily[4].temperature.maximum;
+
+  fourMin = response.data.daily[4].temperature.minimum;
+
+  //
+
+  fiveMax = response.data.daily[5].temperature.maximum;
+
+  fiveMin = response.data.daily[5].temperature.minimum;
+
+  //
+  //
+  console.log(response);
+}
+
+//
+//
+//
+
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#degrees");
@@ -251,6 +298,47 @@ function displayFahrenheitTemperature(event) {
 
   let windSpeedInMiles = Math.round(windSpeed / 1.609344);
   document.querySelector(".windSpeed").innerHTML = `${windSpeedInMiles}mph`;
+  //
+  let tommorowFahMax = document.querySelector(".tomorrowTempMax");
+  maxFahOne = (oneMax * 9) / 5 + 32;
+  tommorowFahMax.innerHTML = `${Math.round(maxFahOne)}°/`;
+
+  let tommorowFahMin = document.querySelector(".tomorrowTempMin");
+  minFahOne = (oneMin * 9) / 5 + 32;
+  tommorowFahMin.innerHTML = `${Math.round(minFahOne)}°`;
+  //
+
+  let dayTwoFahMax = document.querySelector(".dayTwoTempMax");
+  maxFahTwo = (twoMax * 9) / 5 + 32;
+  dayTwoFahMax.innerHTML = `${Math.round(maxFahTwo)}°/`;
+
+  let dayTwoFahMin = document.querySelector(".dayTwoTempMin");
+  minFahTwo = (twoMin * 9) / 5 + 32;
+  dayTwoFahMin.innerHTML = `${Math.round(minFahTwo)}°`;
+  //
+  let dayThreeFahMax = document.querySelector(".dayThreeTempMax");
+  maxFahThree = (threeMax * 9) / 5 + 32;
+  dayThreeFahMax.innerHTML = `${Math.round(maxFahThree)}°/`;
+
+  let dayThreeFahMin = document.querySelector(".dayThreeTempMin");
+  minFahThree = (threeMin * 9) / 5 + 32;
+  dayThreeFahMin.innerHTML = `${Math.round(minFahThree)}°`;
+  //
+  let dayFourFahMax = document.querySelector(".dayFourTempMax");
+  maxFahFour = (fourMax * 9) / 5 + 32;
+  dayFourFahMax.innerHTML = `${Math.round(maxFahFour)}°/`;
+
+  let dayFourFahMin = document.querySelector(".dayFourTempMin");
+  minFahFour = (fourMin * 9) / 5 + 32;
+  dayFourFahMin.innerHTML = `${Math.round(minFahFour)}°`;
+  //
+  let dayFiveFahMax = document.querySelector(".dayFiveTempMax");
+  maxFahFive = (fiveMax * 9) / 5 + 32;
+  dayFiveFahMax.innerHTML = `${Math.round(maxFahFive)}°/`;
+
+  let dayFiveFahMin = document.querySelector(".dayFiveTempMin");
+  minFahFive = (fiveMin * 9) / 5 + 32;
+  dayFiveFahMin.innerHTML = `${Math.round(minFahFive)}°`;
 }
 
 function displayCelsiusTemperature(event) {
@@ -261,6 +349,45 @@ function displayCelsiusTemperature(event) {
   document.querySelector(".windSpeed").innerHTML = `${Math.round(
     windSpeedInKilometers
   )}km/h`;
+  //
+  let tommorowCelMax = document.querySelector(".tomorrowTempMax");
+
+  tommorowCelMax.innerHTML = `${Math.round(oneMax)}°/`;
+
+  let tommorowCelMin = document.querySelector(".tomorrowTempMin");
+
+  tommorowCelMin.innerHTML = `${Math.round(oneMin)}°`;
+  //
+
+  let dayTwoCelMax = document.querySelector(".dayTwoTempMax");
+
+  dayTwoCelMax.innerHTML = `${Math.round(twoMax)}°/`;
+
+  let dayTwoCelMin = document.querySelector(".dayTwoTempMin");
+
+  dayTwoCelMin.innerHTML = `${Math.round(twoMin)}°`;
+  //
+  let dayThreeCelMax = document.querySelector(".dayThreeTempMax");
+  dayThreeCelMax.innerHTML = `${Math.round(threeMax)}°/`;
+
+  let dayThreeCelMin = document.querySelector(".dayThreeTempMin");
+
+  dayThreeCelMin.innerHTML = `${Math.round(threeMin)}°`;
+  //
+  let dayFourCelMax = document.querySelector(".dayFourTempMax");
+
+  dayFourCelMax.innerHTML = `${Math.round(fourMax)}°/`;
+
+  let dayFourCelMin = document.querySelector(".dayFourTempMin");
+
+  dayFourCelMin.innerHTML = `${Math.round(fourMin)}°`;
+  //
+  let dayFiveCelMax = document.querySelector(".dayFiveTempMax");
+  dayFiveCelMax.innerHTML = `${Math.round(fiveMax)}°/`;
+
+  let dayFiveCelMin = document.querySelector(".dayFiveTempMin");
+
+  dayFiveCelMin.innerHTML = `${Math.round(fiveMin)}°`;
 }
 
 let fahrenheitUnit = document.querySelector("#fahrenheit");
