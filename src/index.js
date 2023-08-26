@@ -116,6 +116,7 @@ function displayForecastCurrentArea(response) {
   let lon = response.coords.longitude;
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeatherForecast);
+  axios.get(apiUrl).then(showWeatherForecastTemperature);
   //console.log(response);
 }
 
@@ -233,7 +234,7 @@ function getWeatherData(cityValue) {
   let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${cityValue}&key=${apiKeyForecast}&units=metric`;
   axios.get(apiUrlForecast).then(showWeatherForecast);
   axios.get(apiUrlForecast).then(showWeatherForecastTemperature);
-  console.log(apiUrlForecast);
+  // console.log(apiUrlForecast);
 }
 
 function forecastValue(event) {
@@ -282,7 +283,7 @@ function showWeatherForecastTemperature(response) {
 
   //
   //
-  console.log(response);
+  //console.log(response);
 }
 
 //
