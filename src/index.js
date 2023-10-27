@@ -1,47 +1,23 @@
 //For the day
 let now = new Date();
 console.log(now);
+let text = "";
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+for (let i = 0; i < 5; i++) {
+  const currentDay = now.getDate() + i;
+  const nextDay = new Date(now.getFullYear(), now.getMonth(), currentDay);
 
-let todaysDayOfTheWeek = days[now.getDay()];
-let todaysDay = document.querySelector(".today");
-todaysDay.innerHTML = todaysDayOfTheWeek;
-
-let tommorow = days[now.getDay() + 1];
-let selectorOne = document.querySelector(".tomorrow");
-selectorOne.innerHTML = tommorow;
-
-let afterTommorow = days[now.getDay() + 2];
-let selectorTwo = document.querySelector(".nextDayOne");
-selectorTwo.innerHTML = afterTommorow;
-
-let nextDay = days[now.getDay() + 3];
-let selectorThree = document.querySelector(".nextDayTwo");
-selectorThree.innerHTML = nextDay;
-
-let nextDayTwo = days[now.getDay() + 4];
-let selectorFour = document.querySelector(".nextDayThree");
-selectorFour.innerHTML = nextDayTwo;
-
-let nextDayThree = days[now.getDay() + 5];
-let selectorFive = document.querySelector(".nextDayFour");
-selectorFive.innerHTML = nextDayThree;
+  const nextDayString = nextDay.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+  forecast = document.querySelector(".weekdaysNames");
+  let todaysDay = document.querySelector(".today");
+  text += nextDayString + " ";
+  forToday = text.split(" ");
+  console.log(forToday[0]);
+  forecast.innerHTML = text;
+  todaysDay.innerHTML = forToday[0];
+}
 
 //for the time
 let todaysTime = document.querySelector(".time");
@@ -81,8 +57,6 @@ function displayWeatherCondition(response) {
       ".weather"
     ).innerHTML = `${response.data.condition.description}`;
   }
-
-  // console.log(response.data);
 }
 
 function searchCity(city) {
@@ -186,6 +160,7 @@ function showWeatherForecast(response) {
     dayThreeTempMin = dayThreeTempMin.innerHTML = `${Math.round(
       response.data.daily[3].temperature.minimum
     )}°`;
+    console.log(response.data.daily[0]);
 
     //
     let fourthImage = document.querySelector(".fourthDayImage");
@@ -401,7 +376,7 @@ let celsiusTemperature = null;
 
 let windSpeed = null;
 
-getWeatherData("Canberra");
+getWeatherData("Canaria");
 
 let searchForm = document.querySelector("#searchCity-form");
 searchForm.addEventListener("submit", handleSubmit);
@@ -412,4 +387,4 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 let currentForecastButton = document.querySelector(".currentAreaButton");
 currentForecastButton.addEventListener("click", getCurrentLocationTwo);
 
-searchCity("Canberra");
+searchCity("Canaria");

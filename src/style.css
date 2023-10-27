@@ -298,3 +298,17 @@ video {
 .apiLink:visited {
   color: rgb(11, 21, 74);
 }
+
+.weekdaysNames {
+  word-spacing: 3.4em;
+  font-weight: bolder;
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0 5px 0 5px;
+}
+
+@media (max-width: 767px) {
+  .weekdaysNames {
+    word-spacing: 2em;
+  }
+}
