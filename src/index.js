@@ -14,7 +14,7 @@ for (let i = 0; i < 5; i++) {
   let todaysDay = document.querySelector(".today");
   text += nextDayString + " ";
   forToday = text.split(" ");
-  console.log(forToday[0]);
+  //console.log(text);
   forecast.innerHTML = text;
   todaysDay.innerHTML = forToday[0];
 }
@@ -110,94 +110,68 @@ function showWeatherForecast(response) {
     If you have any questions please contact this email : weather.4cast@gmail.com`);
   } else {
     //
-    let firstImage = document.querySelector(".nextDayImage");
-    firstImage.setAttribute("src", response.data.daily[1].condition.icon_url);
-
-    let nextDescription = document.querySelector(".firstDesk");
-    nextDescription = nextDescription.innerHTML =
-      response.data.daily[1].condition.description;
-
-    let nextTempMax = document.querySelector(".tomorrowTempMax");
-    nextTempMax = nextTempMax.innerHTML = `${Math.round(
-      response.data.daily[1].temperature.maximum
-    )}°/`;
-
-    let nextTempMin = document.querySelector(".tomorrowTempMin");
-    nextTempMin = nextTempMin.innerHTML = `${Math.round(
-      response.data.daily[1].temperature.minimum
-    )}°`;
     //
-    let secondImage = document.querySelector(".secondDayImage");
-    secondImage.setAttribute("src", response.data.daily[2].condition.icon_url);
-
-    let secondDescription = document.querySelector(".secondDesk");
-    secondDescription = secondDescription.innerHTML =
-      response.data.daily[2].condition.description;
-
-    let dayTwoTempMax = document.querySelector(".dayTwoTempMax");
-    dayTwoTempMax = dayTwoTempMax.innerHTML = `${Math.round(
-      response.data.daily[2].temperature.maximum
-    )}°/`;
-
-    let dayTwoTempMin = document.querySelector(".dayTwoTempMin");
-    dayTwoTempMin = dayTwoTempMin.innerHTML = `${Math.round(
-      response.data.daily[2].temperature.minimum
-    )}°`;
     //
-    let thirdImage = document.querySelector(".thirdDayImage");
-    thirdImage.setAttribute("src", response.data.daily[3].condition.icon_url);
-
-    let thirdDescription = document.querySelector(".thirdDesk");
-    thirdDescription = thirdDescription.innerHTML =
-      response.data.daily[3].condition.description;
-
-    let dayThreeTempMax = document.querySelector(".dayThreeTempMax");
-    dayThreeTempMax = dayThreeTempMax.innerHTML = `${Math.round(
-      response.data.daily[3].temperature.maximum
-    )}°/`;
-
-    let dayThreeTempMin = document.querySelector(".dayThreeTempMin");
-    dayThreeTempMin = dayThreeTempMin.innerHTML = `${Math.round(
-      response.data.daily[3].temperature.minimum
-    )}°`;
-    console.log(response.data.daily[0]);
-
     //
-    let fourthImage = document.querySelector(".fourthDayImage");
-    fourthImage.setAttribute("src", response.data.daily[4].condition.icon_url);
 
-    let fourthDescription = document.querySelector(".fourthDesk");
-    fourthDescription = fourthDescription.innerHTML =
-      response.data.daily[4].condition.description;
+    for (let i = 0; i < 5; i++) {
+      textTwo = "";
+      textThree = "";
+      textFour = "";
+      let nextDesc = document.querySelector(".lowerInfo");
+      nextDescription = response.data.daily[i].condition.description;
 
-    let dayFourTempMax = document.querySelector(".dayFourTempMax");
-    dayFourTempMax = dayFourTempMax.innerHTML = `${Math.round(
-      response.data.daily[4].temperature.maximum
-    )}°/`;
+      // console.log(nextDescription);
+      let nextTempMax = document.querySelector(".maxAndMin");
+      maxTemp = `${Math.round(response.data.daily[i].temperature.maximum)}°/`;
+      let nextTempMin = document.querySelector(".maxAndMin");
+      minTemp = `${Math.round(response.data.daily[i].temperature.minimum)}°`;
+      let firstImage = document.querySelector(".emojisCard");
+      let images = response.data.daily[i].condition.icon_url;
+      const element = '<img src="' + images + '">';
+      firstImage.innerHTML += element;
+      // document.querySelector(".emojis").innerHTML = firstImage;
+      console.log(firstImage);
+      //  let place = document.querySelector(".weatherEmojis");
 
-    let dayFourTempMin = document.querySelector(".dayFourTempMin");
-    dayFourTempMin = dayFourTempMin.innerHTML = `${Math.round(
-      response.data.daily[4].temperature.minimum
-    )}°`;
+      /*textTwo += nextDescription + " ";
+      console.log(textTwo);
+      console.log(nextDesc);
+      nextDesc.innerHTML = textTwo; */
 
-    //
-    let fifthImage = document.querySelector(".fifthDayImage");
-    fifthImage.setAttribute("src", response.data.daily[5].condition.icon_url);
+      let spanElement = document.createElement("span");
+      spanElement.textContent = nextDescription;
+      nextDesc.appendChild(spanElement);
+      nextDesc.appendChild(document.createTextNode(" "));
 
-    let fifthDescription = document.querySelector(".fifthDesk");
-    fifthDescription = fifthDescription.innerHTML =
-      response.data.daily[5].condition.description;
+      textTwo += nextDescription + " ";
+
+      let spanElementTwo = document.createElement("span");
+      spanElementTwo.classList.add("max");
+      spanElementTwo.textContent = maxTemp;
+      nextTempMax.appendChild(spanElementTwo);
+      nextTempMax.appendChild(document.createTextNode(" "));
+
+      textTwo += maxTemp + " ";
+
+      let spanElementThree = document.createElement("span");
+      spanElementThree.classList.add("min");
+      spanElementThree.textContent = minTemp;
+      nextTempMin.appendChild(spanElementThree);
+      nextTempMin.appendChild(document.createTextNode(" "));
+      textThree += minTemp + " ";
+
+      //let spanElementFour = document.createElement("span");
+      //spanElementFour.textContent = firstImage;
+      //firstImage.appendChild(spanElementFour);
+      //firstImage.appendChild(document.createTextNode(" "));
+      //  textFour += firstImage;
+      // place.innerHTML = textFour;
+    }
   }
-
-  let dayFiveTempMax = document.querySelector(".dayFiveTempMax");
-  dayFiveTempMax = dayFiveTempMax.innerHTML = `${Math.round(
-    response.data.daily[5].temperature.maximum
-  )}°/`;
-
-  let dayFiveTempMin = document.querySelector(".dayFiveTempMin");
-  dayFiveTempMin = dayFiveTempMin.innerHTML = `${Math.round(
-    response.data.daily[5].temperature.minimum
-  )}°`;
+  //
+  //
+  //
 
   //
   //

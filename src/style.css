@@ -174,10 +174,7 @@
 
 .nextDays .emojisCard {
   padding: 0px;
-}
-
-.weatherEmojis {
-  display: flex;
+  display: inline-flex;
   position: relative;
   justify-content: space-around;
 }
@@ -199,6 +196,7 @@
   display: inline-flex;
   position: relative;
   padding: 15px 0 2px 0;
+  justify-content: space-around;
 }
 
 .forecastTemperature p {
